@@ -3,38 +3,11 @@ import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import MyAccountScreen from './src/MyAccount';
+import ShopScreen from './src/Shop';
+import SocialScreen from './src/Social';
+import HomeScreen from './src/Home';
 
-function HomeScreen() {
-  return (
-    <View style={styles.container}>
-        <Image
-        style = {{width:64,height:64}}
-        source={require("./assets/icon.png")}/>
-        <Text>BabyBump</Text>
-    </View>
-  );
-}
-function SocialScreen() {
-  return (
-    <View style={styles.container}>
-      <Text>Social!</Text>
-    </View>
-  );
-}
-function ShopScreen() {
-  return (
-    <View style={styles.container}>
-      <Text>Shop!</Text>
-    </View>
-  );
-}
-function MyAccountScreen() {
-  return (
-    <View style={styles.container}>
-      <Text>MyAccount!</Text>
-    </View>
-  );
-}
 const Tab = createBottomTabNavigator();
 
 export default function App() {
@@ -56,5 +29,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  topBar:{
+    flex:0.25,
+    backgroundColor: '#CAA8F5',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-end',
+    padding: 32,
+    borderBottomLeftRadius:25,
+    borderBottomRightRadius:25
   },
 });
