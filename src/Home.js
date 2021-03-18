@@ -20,6 +20,14 @@ function HomeScreen() {
         </View>
         <View style={{padding:32}}>
           <Text style={{fontSize:21}}>Trending in Social</Text>
+          <View style={{flexDirection:"row", margin:5, borderBottomColor: '#888', borderBottomWidth: 1}}>
+            <Text style={{fontSize:20, flex:0.1}}>#1</Text>
+            <Text style={{fontSize:12, flex:1}}>Kenapa ya setiap pagi rasanya seluruh tubuhku kram,, apa itu normal??</Text>
+          </View>
+          <View style={{flexDirection:"row", margin:5, borderBottomColor: '#888', borderBottomWidth: 1}}>
+            <Text style={{fontSize:20, flex:0.1}}>#2</Text>
+            <Text style={{fontSize:12, flex:1}}>Klo hamil lebih bagus makan ikan atau sapi ya?</Text>
+          </View>
         </View>
       </View>
       
