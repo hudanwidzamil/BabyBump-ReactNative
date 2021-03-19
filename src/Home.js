@@ -26,9 +26,9 @@ function HomeScreen() {
         backgroundColor: '#fff',
       }}>
         <View style={styles.topBar}>
-          <Text style={{fontSize:26,fontWeight:'bold',color:"#fff"}}>Good Morning</Text>
-          <Text style={{fontSize:21,color:"#fff"}}>Day</Text>
-          <Text style={{fontSize:18,color:"#fff"}}>days to your delivery</Text>
+          <Text style={{fontSize:26,fontWeight:'bold',color:"#fff"}}>Good Morning, Sri</Text>
+          <Text style={{fontSize:21,color:"#fff"}}>Day 64</Text>
+          <Text style={{fontSize:18,color:"#fff"}}>216 days to your delivery</Text>
         </View>
         <View style={{paddingVertical:16, paddingHorizontal:32}}>
           <Text style={{fontSize:21, paddingBottom:8}}>For You</Text>
