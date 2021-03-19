@@ -19,6 +19,19 @@ const TrendingText = (props) =>{
   );
 }
 
+const DailyReadsText = (props) =>{
+  return(
+    <View style={{flexDirection:"row", borderBottomColor: '#888', borderBottomWidth: 1, paddingBottom:5, paddingTop:5}}>
+      <Image source={props.imgPath} style={{marginRight:5}}/>
+      <View>
+        <Text style={{fontSize:12, fontWeight:"bold"}}>{props.title}</Text>
+        <Text style={{fontSize:12}}>{props.content}</Text>
+      </View>
+      
+    </View>
+  );
+}
+
 function HomeScreen() {
     return (
       <View style={{
@@ -53,6 +66,16 @@ function HomeScreen() {
         </View>
         <View style={{paddingVertical:8, paddingHorizontal:32}}>
           <Text style={{fontSize:21}}>Daily Reads</Text>
+          <DailyReadsText
+              title="Dealing with morning sickness: Tips and tricks"
+              content="If only morning sickness were just relegated to the mornings! Here's some help for women coping..."
+              imgPath={require("../assets/dailyreadsimg/image1.png")}
+          />
+          <DailyReadsText
+              title="Which foods to eat and avoid during pregnancy"
+              content="Pregnant women need to ensure that their diet provides enough nutrients and energy for the..."
+              imgPath={require("../assets/dailyreadsimg/image2.png")}
+          />
         </View>
         <View style={{paddingVertical:8, paddingHorizontal:32}}>
           <Text style={{fontSize:21}}>Trending in Social</Text>
@@ -71,7 +94,7 @@ function HomeScreen() {
   
   const styles = StyleSheet.create({
     topBar:{
-      flex:0.5,
+      flex:0.75,
       backgroundColor: '#CAA8F5',
       alignItems: 'flex-start',
       justifyContent: 'flex-end',
