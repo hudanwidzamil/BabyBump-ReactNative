@@ -33,20 +33,32 @@ function HomeScreen() {
         <View style={{paddingVertical:16, paddingHorizontal:32}}>
           <Text style={{fontSize:21, paddingBottom:8}}>For You</Text>
           <View style={{flexDirection:"row"}}>
-            <ForYouButton name="Maternity Wear" imgPath={require("../assets/shopicon/maternitywear.png")}/>
-            <ForYouButton name="Supplement" imgPath={require("../assets/shopicon/supplement.png")}/>
-            <ForYouButton name="Stroller" imgPath={require("../assets/shopicon/stroller.png")}/>
-            <ForYouButton name="Baby Wear" imgPath={require("../assets/shopicon/babywear.png")}/>
+            <ForYouButton
+              name="Maternity Wear" 
+              imgPath={require("../assets/shopicon/maternitywear.png")}
+            />
+            <ForYouButton
+              name="Supplement"
+              imgPath={require("../assets/shopicon/supplement.png")}
+            />
+            <ForYouButton
+              name="Stroller"
+              imgPath={require("../assets/shopicon/stroller.png")}
+            />
+            <ForYouButton
+              name="Baby Wear"
+              imgPath={require("../assets/shopicon/babywear.png")}
+            />
           </View>
         </View>
-        <View style={{paddingVertical:16, paddingHorizontal:32}}>
+        <View style={{paddingVertical:8, paddingHorizontal:32}}>
           <Text style={{fontSize:21}}>Daily Reads</Text>
         </View>
-        <View style={{paddingVertical:16, paddingHorizontal:32}}>
+        <View style={{paddingVertical:8, paddingHorizontal:32}}>
           <Text style={{fontSize:21}}>Trending in Social</Text>
           <TrendingText 
             no="1" 
-            isi="Kenapa ya setiap pagi rasanya seluruh tubuhku kram,, apa itu normal??"
+            isi="Kenapa ya setiap pagi rasanya seluruh tubuhku kram, apa itu normal?"
           />
           <TrendingText 
             no="2" 
