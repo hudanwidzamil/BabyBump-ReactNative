@@ -21,7 +21,7 @@ const TrendingText = (props) =>{
 
 function HomeScreen() {
     return (
-      <ScrollView style={{
+      <View style={{
         flex: 1,
         backgroundColor: '#fff',
       }}>
@@ -53,7 +53,7 @@ function HomeScreen() {
             isi="Klo hamil lebih bagus makan ikan atau sapi ya?"
           />
         </View>
-      </ScrollView>
+      </View>
     );
   }
   
