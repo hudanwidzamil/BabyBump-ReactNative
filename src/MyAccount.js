@@ -36,7 +36,7 @@ const WaitingForReviewCard = (props) =>{
 }
 function MyAccountScreen(){
     return (
-      <View style={{
+      <ScrollView style={{
         flex: 1,
         backgroundColor: '#fff',
       }}>
@@ -72,7 +72,7 @@ function MyAccountScreen(){
         <View style={{paddingVertical:16, paddingHorizontal:32, borderBottomWidth: 1, borderBottomColor:"#DADADA"}}>
           <View style={{flexDirection: "row"}}>
             <Text style={{fontSize:21, paddingBottom:8}}>My Orders</Text>
-            <Text style={{fontSize:14, paddingLeft:80, paddingTop:5}}>Transaction History ></Text>
+            <Text style={{fontSize:14, paddingLeft:80, paddingTop:5}}>Transaction History</Text>
           </View>
           <View style={{flexDirection:"row"}}>
             <MyOrderButton
@@ -129,7 +129,7 @@ function MyAccountScreen(){
             />
           </View>
         </View>
-      </View>
+      </ScrollView>
     );
   }
   
@@ -140,6 +140,7 @@ function MyAccountScreen(){
       alignItems: 'flex-start',
       paddingLeft: 22,
       paddingTop: 120,
+      paddingBottom:32
     },
   });
   
