@@ -12,7 +12,7 @@ const MyOrderButton = (props) =>{
 
 const WishlistCard = (props) =>{
   return(
-    <View style={{alignItems:"center", height:120, width:90, flexDirection:"column", borderColor: '#B8B8B8', borderRadius:5, borderWidth: 1, padding:5}}>
+    <View style={{marginRight:10, alignItems:'center', height:120, width:90, flexDirection:"column", borderColor: '#B8B8B8', borderRadius:5, borderWidth: 1, padding:5}}>
       <Image source={props.imgPath}/>
       <Text style={{fontSize:12, flex:1, padding:5}}>{props.name}</Text>
       <Text style={{fontSize:12, flex:1, fontWeight:'bold'}}>Rp{props.price}</Text>
@@ -113,14 +113,14 @@ function MyAccountScreen(){
             />
             <WishlistCard 
               imgPath={require("../assets/mywishlistimg/flowystroller.png")}
-              name='Flowy stroller'
+              name='Baby jogger'
               price='400.000'
             />
           </View>
         </View>
         <View style={{paddingVertical:8, paddingHorizontal:32}}>
-          <Text style={{fontSize:21}}>Waiting for review</Text>
-          <View style={{flexDirection:"column"}}>
+          <Text style={{fontSize:15}}>Waiting for review</Text>
+          <View style={{flexDirection:"column", overflow:'scroll'}}>
             <WaitingForReviewCard
               imgPath={require("../assets/waitingforreviewimg/blackmores.jpg")}
               product="Blackmores"
