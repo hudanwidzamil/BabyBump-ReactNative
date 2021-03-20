@@ -10,24 +10,27 @@ const MyOrderButton = (props) =>{
   );
 }
 
-const TrendingText = (props) =>{
+const WishlistCard = (props) =>{
   return(
-    <View style={{flexDirection:"row", borderBottomColor: '#888', borderBottomWidth: 1, paddingBottom:5, paddingTop:5}}>
-      <Text style={{fontSize:20, flex:0.125}}>#{props.no}</Text>
-      <Text style={{fontSize:12, flex:1}}>{props.isi}</Text>
+    <View style={{alignItems:"center", height:120, width:90, flexDirection:"column", borderColor: '#B8B8B8', borderRadius:5, borderWidth: 1, padding:5}}>
+      <Image source={props.imgPath}/>
+      <Text style={{fontSize:12, flex:1, padding:5}}>{props.name}</Text>
+      <Text style={{fontSize:12, flex:1, fontWeight:'bold'}}>Rp{props.price}</Text>
     </View>
   );
 }
 
-const DailyReadsText = (props) =>{
+const WaitingForReviewCard = (props) =>{
   return(
-    <View style={{flexDirection:"row", borderBottomColor: '#888', borderBottomWidth: 1, paddingBottom:5, paddingTop:5}}>
-      <Image source={props.imgPath} style={{marginRight:5}}/>
-      <View>
-        <Text style={{fontSize:12, fontWeight:"bold"}}>{props.title}</Text>
-        <Text style={{fontSize:12}}>{props.content}</Text>
+    <View style={{flexDirection:"row", paddingBottom:5, paddingTop:5}}>
+      <View style={{borderColor: '#B8B8B8', borderRadius:5, borderWidth: 1, padding:5}}>
+      <Image source={props.imgPath}/>
       </View>
-      
+      <View style={{width:210, paddingLeft:10, paddingTop:5}}>
+        <Text style={{fontSize:12, fontWeight:"bold"}}>{props.product}</Text>
+        <Text style={{fontSize:12, paddingTop:2}}>{props.description}</Text>
+        <Text style={{fontSize:12, paddingTop:5, alignSelf:"flex-end"}}>{props.qty}x</Text>
+      </View> 
     </View>
   );
 }
@@ -92,27 +95,39 @@ function MyAccountScreen(){
         </View>
         <View style={{paddingVertical:8, paddingHorizontal:32, borderBottomWidth: 1, borderBottomColor:"#DADADA"}}>
           <Text style={{fontSize:21}}>My Wishlist</Text>
-          <DailyReadsText
-              title="Dealing with morning sickness: Tips and tricks"
-              content="If only morning sickness were just relegated to the mornings! Here's some help for women coping..."
-              imgPath={require("../assets/dailyreadsimg/image1.png")}
-          />
-          <DailyReadsText
-              title="Which foods to eat and avoid during pregnancy"
-              content="Pregnant women need to ensure that their diet provides enough nutrients and energy for the..."
-              imgPath={require("../assets/dailyreadsimg/image2.png")}
-          />
+          <View style={{flexDirection: "row", paddingVertical:8, paddingHorizontal:1, overflow:"scroll"}}>
+            <WishlistCard 
+              imgPath={require("../assets/mywishlistimg/flowystroller.png")}
+              name='Flowy stroller'
+              price='400.000'
+            />
+            <WishlistCard 
+              imgPath={require("../assets/mywishlistimg/blessing.png")}
+              name='Blessing'
+              price='190.000'
+            />
+            <WishlistCard 
+              imgPath={require("../assets/mywishlistimg/hnm.png")}
+              name='H&M'
+              price='400.000'
+            />
+            <WishlistCard 
+              imgPath={require("../assets/mywishlistimg/flowystroller.png")}
+              name='Flowy stroller'
+              price='400.000'
+            />
+          </View>
         </View>
         <View style={{paddingVertical:8, paddingHorizontal:32}}>
           <Text style={{fontSize:21}}>Waiting for review</Text>
-          <TrendingText 
-            no="1" 
-            isi="Kenapa ya setiap pagi rasanya seluruh tubuhku kram, apa itu normal?"
-          />
-          <TrendingText 
-            no="2" 
-            isi="Klo hamil lebih bagus makan ikan atau sapi ya?"
-          />
+          <View style={{flexDirection:"column"}}>
+            <WaitingForReviewCard
+              imgPath={require("../assets/waitingforreviewimg/blackmores.jpg")}
+              product="Blackmores"
+              description="Pregnancy & Breast-Feeding Gold"
+              qty="1"
+            />
+          </View>
         </View>
       </View>
     );
@@ -120,7 +135,7 @@ function MyAccountScreen(){
   
   const styles = StyleSheet.create({
     topBar:{
-      flex:0.75,
+      flex:1,
       backgroundColor: '#f8f4fd',
       alignItems: 'flex-start',
       paddingLeft: 22,
