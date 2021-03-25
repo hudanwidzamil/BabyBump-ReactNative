@@ -1,10 +1,12 @@
 import React from 'react';
-import {StyleSheet, View, Text, Image, ScrollView } from 'react-native';
+import {StyleSheet, View, Text, Image, ScrollView , TouchableOpacity} from 'react-native';
 
 const MyOrderButton = (props) =>{
   return(
     <View style={{alignItems:"center", flex:1}}>
-      <Image source={props.imgPath}/>
+      <TouchableOpacity>
+        <Image source={props.imgPath}/>
+      </TouchableOpacity>
       <Text style={{fontSize:11, textAlign:"center", paddingTop:8}}>{props.name}</Text>
     </View>
   );
@@ -12,26 +14,31 @@ const MyOrderButton = (props) =>{
 
 const WishlistCard = (props) =>{
   return(
-    <View style={{marginRight:10, alignItems:'center', height:120, width:90, flexDirection:"column", borderColor: '#B8B8B8', borderRadius:5, borderWidth: 1, padding:5}}>
-      <Image source={props.imgPath}/>
-      <Text style={{fontSize:12, flex:1, padding:5}}>{props.name}</Text>
-      <Text style={{fontSize:12, flex:1, fontWeight:'bold'}}>Rp{props.price}</Text>
-    </View>
+    <TouchableOpacity>
+      <View style={{marginRight:10, alignItems:'center', height:120, width:90, flexDirection:"column", borderColor: '#B8B8B8', borderRadius:5, borderWidth: 1, padding:5}}>
+        <Image source={props.imgPath}/>
+        <Text style={{fontSize:12, flex:1, padding:5}}>{props.name}</Text>
+        <Text style={{fontSize:12, flex:1, fontWeight:'bold'}}>Rp{props.price}</Text>
+      </View>  
+    </TouchableOpacity>
+    
   );
 }
 
 const WaitingForReviewCard = (props) =>{
   return(
-    <View style={{flexDirection:"row", paddingBottom:5, paddingTop:5}}>
-      <View style={{borderColor: '#B8B8B8', borderRadius:5, borderWidth: 1, padding:5}}>
-      <Image source={props.imgPath}/>
+    <TouchableOpacity>
+      <View style={{flexDirection:"row", paddingBottom:5, paddingTop:5}}>
+        <View style={{borderColor: '#B8B8B8', borderRadius:5, borderWidth: 1, padding:5}}>
+        <Image source={props.imgPath}/>
+        </View>
+        <View style={{width:210, paddingLeft:10, paddingTop:5}}>
+          <Text style={{fontSize:12, fontWeight:"bold"}}>{props.product}</Text>
+          <Text style={{fontSize:12, paddingTop:2}}>{props.description}</Text>
+          <Text style={{fontSize:12, paddingTop:5, alignSelf:"flex-end"}}>{props.qty}x</Text>
+        </View> 
       </View>
-      <View style={{width:210, paddingLeft:10, paddingTop:5}}>
-        <Text style={{fontSize:12, fontWeight:"bold"}}>{props.product}</Text>
-        <Text style={{fontSize:12, paddingTop:2}}>{props.description}</Text>
-        <Text style={{fontSize:12, paddingTop:5, alignSelf:"flex-end"}}>{props.qty}x</Text>
-      </View> 
-    </View>
+    </TouchableOpacity>
   );
 }
 function MyAccountScreen(){
@@ -51,7 +58,10 @@ function MyAccountScreen(){
             <View style={{flexDirection: "column", left:5, top:10}}>
               <Text style={{fontSize:17}}>Rina Setiawati</Text>
               <Text style={{fontSize:15}}>@rina123</Text>
-              <Image source={require("../assets/accounttopbar/membership.png")} style={{top:4}}/>
+              <TouchableOpacity>
+                <Image source={require("../assets/accounttopbar/membership.png")} style={{top:4}}/>
+              </TouchableOpacity>
+              
             </View>
             <View style={{flexDirection: "column", left:30, top: 5, alignSelf:'center'}}>
               <View style={{flexDirection: "row"}}>
@@ -72,7 +82,9 @@ function MyAccountScreen(){
         <View style={{paddingVertical:16, paddingHorizontal:32, borderBottomWidth: 1, borderBottomColor:"#DADADA"}}>
           <View style={{flexDirection: "row"}}>
             <Text style={{fontSize:21, paddingBottom:8}}>My Orders</Text>
-            <Text style={{fontSize:14, paddingLeft:80, paddingTop:5}}>Transaction History</Text>
+            <TouchableOpacity>
+              <Text style={{fontSize:14, paddingLeft:80, paddingTop:5}}>Transaction History</Text>
+            </TouchableOpacity>
           </View>
           <View style={{flexDirection:"row"}}>
             <MyOrderButton
@@ -95,7 +107,7 @@ function MyAccountScreen(){
         </View>
         <View style={{paddingVertical:8, paddingHorizontal:32, borderBottomWidth: 1, borderBottomColor:"#DADADA"}}>
           <Text style={{fontSize:21}}>My Wishlist</Text>
-          <View style={{flexDirection: "row", paddingVertical:8, paddingHorizontal:1, overflow:"scroll"}}>
+          <ScrollView horizontal={true} style={{paddingVertical:8, paddingHorizontal:1}}>
             <WishlistCard 
               imgPath={require("../assets/mywishlistimg/flowystroller.png")}
               name='Flowy stroller'
@@ -116,7 +128,7 @@ function MyAccountScreen(){
               name='Baby jogger'
               price='400.000'
             />
-          </View>
+          </ScrollView>
         </View>
         <View style={{paddingVertical:8, paddingHorizontal:32}}>
           <Text style={{fontSize:15}}>Waiting for review</Text>

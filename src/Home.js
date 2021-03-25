@@ -1,10 +1,12 @@
 import React from 'react';
-import {StyleSheet, View, Text, Image, ScrollView } from 'react-native';
+import {StyleSheet, View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
 
 const ForYouButton = (props) =>{
   return(
     <View style={{alignItems:"center", flex:1}}>
-      <Image source={props.imgPath}/>
+      <TouchableOpacity>
+        <Image source={props.imgPath} resizeMode="contain"/>
+      </TouchableOpacity>
       <Text style={{fontSize:11, textAlign:"center", paddingTop:8}}>{props.name}</Text>
     </View>
   );
@@ -12,23 +14,27 @@ const ForYouButton = (props) =>{
 
 const TrendingText = (props) =>{
   return(
-    <View style={{flexDirection:"row", borderBottomColor: '#888', borderBottomWidth: 1, paddingBottom:5, paddingTop:5}}>
-      <Text style={{fontSize:20, flex:0.125}}>#{props.no}</Text>
-      <Text style={{fontSize:12, flex:1}}>{props.isi}</Text>
-    </View>
+    <TouchableOpacity>
+      <View style={{flexDirection:"row", borderBottomColor: '#888', borderBottomWidth: 1, paddingBottom:5, paddingTop:5}}>
+        <Text style={{fontSize:20, flex:0.125}}>#{props.no}</Text>
+        <Text numberOfLines={2} style={{fontSize:12, flex:1}}>{props.isi}</Text>
+      </View>
+    </TouchableOpacity>
+    
   );
 }
 
 const DailyReadsText = (props) =>{
   return(
-    <View style={{flexDirection:"row", borderBottomColor: '#888', borderBottomWidth: 1, paddingBottom:5, paddingTop:5}}>
-      <Image source={props.imgPath} style={{marginRight:5}}/>
-      <View>
-        <Text style={{fontSize:12, fontWeight:"bold"}}>{props.title}</Text>
-        <Text style={{fontSize:12}}>{props.content}</Text>
+    <TouchableOpacity>
+      <View style={{flexDirection:"row", borderBottomColor: '#888', borderBottomWidth: 1, paddingBottom:5, paddingTop:5}}>
+        <Image source={props.imgPath} style={{marginRight:5}}/>
+        <View>
+          <Text style={{fontSize:12, fontWeight:"bold"}}>{props.title}</Text>
+          <Text numberOfLines={2} style={{fontSize:12}}>{props.content}</Text>
+        </View>
       </View>
-      
-    </View>
+    </TouchableOpacity>
   );
 }
 
@@ -68,7 +74,7 @@ function HomeScreen() {
           <Text style={{fontSize:21}}>Daily Reads</Text>
           <DailyReadsText
               title="Dealing with morning sickness: Tips and tricks"
-              content="If only morning sickness were just relegated to the mornings! Here's some help for women coping..."
+              content="If only morning sickness were just relegated to the mornings! Here's some help for women"
               imgPath={require("../assets/dailyreadsimg/image1.png")}
           />
           <DailyReadsText
