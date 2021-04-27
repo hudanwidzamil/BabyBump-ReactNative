@@ -49,17 +49,17 @@ function MyAccountScreen(){
       }}>
         <View style={styles.topBar}>
           <View style={{flexDirection: "row-reverse"}}>
-            <Image source={require("../assets/accounttopbar/setting.png")} style={{left:-10}}/>
-            <Image source={require("../assets/accounttopbar/notification.png")}/>
+            <Image source={require("../../assets/accounttopbar/setting.png")} style={{left:-10}}/>
+            <Image source={require("../../assets/accounttopbar/notification.png")}/>
             <Text style={{fontSize:17,fontWeight:'bold',color:"#000000",paddingRight:180}}>My Profile</Text>
           </View>
           <View style={{flexDirection:"row", top:10}}>
-            <Image source={require("../assets/accounttopbar/female-prof.png")}/>
+            <Image source={require("../../assets/accounttopbar/female-prof.png")}/>
             <View style={{flexDirection: "column", left:5, top:10}}>
               <Text style={{fontSize:17}}>Rina Setiawati</Text>
               <Text style={{fontSize:15}}>@rina123</Text>
               <TouchableOpacity>
-                <Image source={require("../assets/accounttopbar/membership.png")} style={{top:4}}/>
+                <Image source={require("../../assets/accounttopbar/membership.png")} style={{top:4}}/>
               </TouchableOpacity>
               
             </View>
@@ -75,7 +75,7 @@ function MyAccountScreen(){
                 </View>
               </View>
               <Text style={{fontSize:14,fontWeight:'bold', alignSelf:'center', top:5}}>9 weeks pregnant</Text>
-              <Image source={require("../assets/accounttopbar/pregnancylevel.png")} style={{top:4}}/>
+              <Image source={require("../../assets/accounttopbar/pregnancylevel.png")} style={{top:4}}/>
             </View>
           </View>
         </View>
@@ -89,19 +89,19 @@ function MyAccountScreen(){
           <View style={{flexDirection:"row"}}>
             <MyOrderButton
               name="Payment" 
-              imgPath={require("../assets/accounticon/payment.png")}
+              imgPath={require("../../assets/accounticon/payment.png")}
             />
             <MyOrderButton
               name="Packaging"
-              imgPath={require("../assets/accounticon/packaging.png")}
+              imgPath={require("../../assets/accounticon/packaging.png")}
             />
             <MyOrderButton
               name="Shipping"
-              imgPath={require("../assets/accounticon/shipping.png")}
+              imgPath={require("../../assets/accounticon/shipping.png")}
             />
             <MyOrderButton
               name="Review"
-              imgPath={require("../assets/accounticon/review.png")}
+              imgPath={require("../../assets/accounticon/review.png")}
             />
           </View>
         </View>
@@ -109,22 +109,22 @@ function MyAccountScreen(){
           <Text style={{fontSize:21}}>My Wishlist</Text>
           <ScrollView horizontal={true} style={{paddingVertical:8, paddingHorizontal:1}}>
             <WishlistCard 
-              imgPath={require("../assets/mywishlistimg/flowystroller.png")}
+              imgPath={require("../../assets/mywishlistimg/flowystroller.png")}
               name='Flowy stroller'
               price='400.000'
             />
             <WishlistCard 
-              imgPath={require("../assets/mywishlistimg/blessing.png")}
+              imgPath={require("../../assets/mywishlistimg/blessing.png")}
               name='Blessing'
               price='190.000'
             />
             <WishlistCard 
-              imgPath={require("../assets/mywishlistimg/hnm.png")}
+              imgPath={require("../../assets/mywishlistimg/hnm.png")}
               name='H&M'
               price='400.000'
             />
             <WishlistCard 
-              imgPath={require("../assets/mywishlistimg/flowystroller.png")}
+              imgPath={require("../../assets/mywishlistimg/flowystroller.png")}
               name='Baby jogger'
               price='400.000'
             />
@@ -134,7 +134,7 @@ function MyAccountScreen(){
           <Text style={{fontSize:15}}>Waiting for review</Text>
           <View style={{flexDirection:"column", overflow:'scroll'}}>
             <WaitingForReviewCard
-              imgPath={require("../assets/waitingforreviewimg/blackmores.jpg")}
+              imgPath={require("../../assets/waitingforreviewimg/blackmores.jpg")}
               product="Blackmores"
               description="Pregnancy & Breast-Feeding Gold"
               qty="1"

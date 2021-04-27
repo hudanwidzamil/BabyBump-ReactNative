@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
+import {StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 
 const ForYouButton = (props) =>{
   return(
@@ -54,19 +54,19 @@ function HomeScreen() {
           <View style={{flexDirection:"row"}}>
             <ForYouButton
               name="Maternity Wear" 
-              imgPath={require("../assets/shopicon/maternitywear.png")}
+              imgPath={require("../../assets/shopicon/maternitywear.png")}
             />
             <ForYouButton
               name="Supplement"
-              imgPath={require("../assets/shopicon/supplement.png")}
+              imgPath={require("../../assets/shopicon/supplement.png")}
             />
             <ForYouButton
               name="Stroller"
-              imgPath={require("../assets/shopicon/stroller.png")}
+              imgPath={require("../../assets/shopicon/stroller.png")}
             />
             <ForYouButton
               name="Baby Wear"
-              imgPath={require("../assets/shopicon/babywear.png")}
+              imgPath={require("../../assets/shopicon/babywear.png")}
             />
           </View>
         </View>
@@ -75,12 +75,12 @@ function HomeScreen() {
           <DailyReadsText
               title="Dealing with morning sickness: Tips and tricks"
               content="If only morning sickness were just relegated to the mornings! Here's some help for women"
-              imgPath={require("../assets/dailyreadsimg/image1.png")}
+              imgPath={require("../../assets/dailyreadsimg/image1.png")}
           />
           <DailyReadsText
               title="Which foods to eat and avoid during pregnancy"
               content="Pregnant women need to ensure that their diet provides enough nutrients and energy for the..."
-              imgPath={require("../assets/dailyreadsimg/image2.png")}
+              imgPath={require("../../assets/dailyreadsimg/image2.png")}
           />
         </View>
         <View style={{paddingVertical:8, paddingHorizontal:32}}>
