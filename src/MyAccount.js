@@ -151,7 +151,7 @@ function MyAccountScreen(){
       backgroundColor: '#f8f4fd',
       alignItems: 'flex-start',
       paddingLeft: 22,
-      paddingTop: 120,
+      paddingTop: 48,
       paddingBottom:32
     },
   });
