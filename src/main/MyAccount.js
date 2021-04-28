@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {StyleSheet, View, Text, Image, ScrollView , TouchableOpacity} from 'react-native';
+
+import firebase from 'firebase';
+require('firebase/firestore');
 
 const MyOrderButton = (props) =>{
   return(
@@ -41,7 +44,35 @@ const WaitingForReviewCard = (props) =>{
     </TouchableOpacity>
   );
 }
+
+
+
 function MyAccountScreen(){
+
+    const [user, setUser] = useState(null);
+    var loggedIn = true;
+    useEffect(() => {
+      if (loggedIn) {
+        firebase.firestore()
+        .collection("users")
+        .doc(firebase.auth().currentUser.uid)
+        .get()
+        .then((result)=>{
+          setUser(result.data())
+        })  
+      }
+      
+    }, [user]);
+
+    if (user === null) {
+      return <View/>
+    }
+    
+    const onLogout = () => {
+      firebase.auth().signOut();
+      loggedIn = false;
+    }
+
     return (
       <ScrollView style={{
         flex: 1,
@@ -49,15 +80,18 @@ function MyAccountScreen(){
       }}>
         <View style={styles.topBar}>
           <View style={{flexDirection: "row-reverse"}}>
-            <Image source={require("../../assets/accounttopbar/setting.png")} style={{left:-10}}/>
+            <TouchableOpacity onPress={()=>onLogout()}>
+              <Image source={require("../../assets/accounttopbar/setting.png")} style={{left:15}}/>
+            </TouchableOpacity>
+            
             <Image source={require("../../assets/accounttopbar/notification.png")}/>
             <Text style={{fontSize:17,fontWeight:'bold',color:"#000000",paddingRight:180}}>My Profile</Text>
           </View>
           <View style={{flexDirection:"row", top:10}}>
             <Image source={require("../../assets/accounttopbar/female-prof.png")}/>
             <View style={{flexDirection: "column", left:5, top:10}}>
-              <Text style={{fontSize:17}}>Rina Setiawati</Text>
-              <Text style={{fontSize:15}}>@rina123</Text>
+              <Text style={{fontSize:17}}>{user.name}</Text>
+              <Text style={{fontSize:15}}>@{user.uname}</Text>
               <TouchableOpacity>
                 <Image source={require("../../assets/accounttopbar/membership.png")} style={{top:4}}/>
               </TouchableOpacity>

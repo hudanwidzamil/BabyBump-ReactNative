@@ -1,5 +1,8 @@
-import React from 'react';
-import {StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import {StyleSheet, ScrollView , View, Text, Image, TouchableOpacity } from 'react-native';
+
+import firebase from 'firebase';
+require("firebase/firestore");
 
 const ForYouButton = (props) =>{
   return(
@@ -38,16 +41,29 @@ const DailyReadsText = (props) =>{
   );
 }
 
+
 function HomeScreen() {
+
+    const [user, setUser] = useState({name: ''});
+    useEffect(() => {
+      firebase.firestore()
+        .collection("users")
+        .doc(firebase.auth().currentUser.uid)
+        .get()
+        .then((result)=>{
+          setUser(result.data())
+        })
+    }, [user]);
     return (
-      <View style={{
+      <ScrollView style={{
         flex: 1,
         backgroundColor: '#fff',
       }}>
         <View style={styles.topBar}>
-          <Text style={{fontSize:26,fontWeight:'bold',color:"#fff"}}>Good Morning, Sri</Text>
-          <Text style={{fontSize:21,color:"#fff"}}>Day 64</Text>
-          <Text style={{fontSize:18,color:"#fff"}}>216 days to your delivery</Text>
+          <Text style={{fontSize:20,fontWeight:'bold',color:"#fff"}}>Good Morning,</Text>
+          <Text style={{fontSize:26,fontWeight:'bold',color:"#fff"}}>{user.name}</Text>
+          <Text style={{fontSize:20,color:"#fff"}}>Day 64</Text>
+          <Text style={{fontSize:16,color:"#fff"}}>216 days to your delivery</Text>
         </View>
         <View style={{paddingVertical:16, paddingHorizontal:32}}>
           <Text style={{fontSize:21, paddingBottom:8}}>For You</Text>
@@ -94,7 +110,7 @@ function HomeScreen() {
             isi="Klo hamil lebih bagus makan ikan atau sapi ya?"
           />
         </View>
-      </View>
+      </ScrollView>
     );
   }
   

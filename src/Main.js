@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Image } from 'react-native';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -29,7 +29,7 @@ function Main(props) {
               options={{
                 tabBarLabel: "Home",
                 tabBarIcon: (props) => (
-                  <IconBottom data={props} image={require('./assets/navbaricon/home.png')}/>
+                  <IconBottom data={props} image={require('../assets/navbaricon/home.png')}/>
                 )
               }}
             />
@@ -37,7 +37,7 @@ function Main(props) {
               options={{
                 tabBarLabel: "Social",
                 tabBarIcon: (props) => (
-                  <IconBottom data={props} image={require('./assets/navbaricon/social.png')}/>
+                  <IconBottom data={props} image={require('../assets/navbaricon/social.png')}/>
                 )
               }}
             />
@@ -45,7 +45,7 @@ function Main(props) {
               options={{
                 tabBarLabel: "Shop",
                 tabBarIcon: (props) => (
-                  <IconBottom data={props} image={require('./assets/navbaricon/shop.png')}/>
+                  <IconBottom data={props} image={require('../assets/navbaricon/shop.png')}/>
                 )
               }}
             />
@@ -53,7 +53,7 @@ function Main(props) {
               options={{
                 tabBarLabel: "My Account",
                 tabBarIcon: (props) => (
-                  <IconBottom data={props} image={require('./assets/navbaricon/myaccount.png')}/>
+                  <IconBottom data={props} image={require('../assets/navbaricon/myaccount.png')}/>
                 )
               }}
             />
