@@ -25,6 +25,7 @@ import LandingScreen from './src/auth/Landing';
 import RegisterScreen from './src/auth/Register';
 import LoginScreen from './src/auth/Login';
 import MainScreen from  './src/Main';
+import PostScreen from './src/main/Post';
 
 const Stack = createStackNavigator();
 
@@ -76,6 +77,7 @@ export class App extends Component {
         <StatusBar style="auto"/>
         <Stack.Navigator initialRouteName="Main">
         <Stack.Screen name="Main" component={MainScreen} />
+        <Stack.Screen name="Post" component={PostScreen} navigation={this.props.navigation}/>
         </Stack.Navigator>
       </NavigationContainer>
     );
