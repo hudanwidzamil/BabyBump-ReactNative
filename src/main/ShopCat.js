@@ -5,12 +5,14 @@ import firebase from 'firebase';
 require("firebase/firestore");
 
 
-function ShopScreen({navigation}){
+function ShopCatScreen(props){
+    const cat = props.route.params.cat;
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
       firebase.firestore()
         .collection("products")
+        .where('category', '=', cat)
         .get()
         .then((snapshot)=>{
           let products = snapshot.docs.map(doc => {
@@ -23,29 +25,13 @@ function ShopScreen({navigation}){
         
     }, []);
 
-    const fetchProducts = (search) => {
-      firebase.firestore()
-      .collection('products')
-      .where('name', '>=', search)
-      .get()
-      .then((snapshot)=>{
-          let products = snapshot.docs.map(doc => {
-              const data = doc.data();
-              const id = doc.id;
-              return {id, ...data} 
-          });
-          setProducts(products);
-      })
-  }
-
     return (
       <View style={{flex:1}}>
-        <TextInput placeholder="Search for spesific products ..." onChangeText={(search)=>fetchProducts(search)}/>
         <FlatList
           data = {products}
           renderItem = {({item})=>
             (
-              <TouchableOpacity onPress={()=> navigation.navigate('Detail', {item})}>
+              <TouchableOpacity onPress={()=> props.navigation.navigate('Detail', {item})}>
                 <View style={{flex: 1,
                               flexDirection: 'row',
                               flexWrap: 'wrap',
@@ -65,4 +51,4 @@ function ShopScreen({navigation}){
     );
   }
 
-export default ShopScreen;
+export default ShopCatScreen;

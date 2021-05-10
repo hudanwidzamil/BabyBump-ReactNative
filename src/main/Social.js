@@ -7,7 +7,7 @@ require("firebase/firestore");
 
 function SocialScreen({navigation}){
     const [posts, setPosts] = useState([]);
-    /*useEffect(() => {
+    useEffect(() => {
       firebase.firestore()
         .collection("posts")
         .get()
@@ -17,11 +17,10 @@ function SocialScreen({navigation}){
             const id = doc.id;
             return { id, ...data}
           })
-          console.log(posts);
           setPosts(posts);
         })
         
-    }, []);*/
+    }, []);
 
     const fetchPosts = (search) => {
       firebase.firestore()
