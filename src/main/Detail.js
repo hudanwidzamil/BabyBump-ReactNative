@@ -8,7 +8,7 @@ export default function Detail(props) {
     const [total, setTotal] = useState(0);
 
     const onCheckout = () => {
-        props.navigation.navigate('Checkout');
+        props.navigation.navigate('Checkout', { shop : { item: item, count: count, total: total }});
     }
 
     return (
