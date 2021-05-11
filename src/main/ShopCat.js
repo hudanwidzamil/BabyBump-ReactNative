@@ -12,7 +12,7 @@ function ShopCatScreen(props){
     useEffect(() => {
       firebase.firestore()
         .collection("products")
-        .where('category', '=', cat)
+        .where('category', '==', cat)
         .get()
         .then((snapshot)=>{
           let products = snapshot.docs.map(doc => {

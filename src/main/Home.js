@@ -4,17 +4,6 @@ import {StyleSheet, ScrollView , View, Text, Image, TouchableOpacity } from 'rea
 import firebase from 'firebase';
 require("firebase/firestore");
 
-const ForYouButton = (props) =>{
-  return(
-    <View style={{alignItems:"center", flex:1}}>
-      <TouchableOpacity>
-        <Image source={props.imgPath} resizeMode="contain"/>
-      </TouchableOpacity>
-      <Text style={{fontSize:11, textAlign:"center", paddingTop:8}}>{props.name}</Text>
-    </View>
-  );
-}
-
 const TrendingText = (props) =>{
   return(
     <TouchableOpacity>
@@ -42,7 +31,7 @@ const DailyReadsText = (props) =>{
 }
 
 
-function HomeScreen() {
+function HomeScreen(props) {
 
     const [user, setUser] = useState({name: ''});
     useEffect(() => {
@@ -65,27 +54,39 @@ function HomeScreen() {
           <Text style={{fontSize:20,color:"#fff"}}>Day 64</Text>
           <Text style={{fontSize:16,color:"#fff"}}>216 days to your delivery</Text>
         </View>
+        
         <View style={{paddingVertical:16, paddingHorizontal:32}}>
           <Text style={{fontSize:21, paddingBottom:8}}>For You</Text>
           <View style={{flexDirection:"row"}}>
-            <ForYouButton
-              name="Maternity Wear" 
-              imgPath={require("../../assets/shopicon/maternitywear.png")}
-            />
-            <ForYouButton
-              name="Supplement"
-              imgPath={require("../../assets/shopicon/supplement.png")}
-            />
-            <ForYouButton
-              name="Stroller"
-              imgPath={require("../../assets/shopicon/stroller.png")}
-            />
-            <ForYouButton
-              name="Baby Wear"
-              imgPath={require("../../assets/shopicon/babywear.png")}
-            />
+            <TouchableOpacity onPress={()=> props.navigation.navigate('ShopCat',{cat:'mwear'})}>
+              <View style={{alignItems:"center", flex:1, paddingHorizontal:5}}>
+                <Image source={require("../../assets/shopicon/maternitywear.png")} resizeMode="contain"/>
+                <Text style={{fontSize:11, textAlign:"center", paddingTop:8}}>Maternity Wear</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={()=> props.navigation.navigate('ShopCat',{cat:'supplement'})}>
+              <View style={{alignItems:"center", flex:1, paddingHorizontal:5}}>
+                <Image source={require("../../assets/shopicon/supplement.png")} resizeMode="contain"/>
+                <Text style={{fontSize:11, textAlign:"center", paddingTop:8}}>Supplement</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={()=> props.navigation.navigate('ShopCat',{cat:'stroller'})}>
+              <View style={{alignItems:"center", flex:1, paddingHorizontal:5}}>
+                <Image source={require("../../assets/shopicon/stroller.png")} resizeMode="contain"/>
+                <Text style={{fontSize:11, textAlign:"center", paddingTop:8}}>Stroller</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={()=> props.navigation.navigate('ShopCat',{cat:'bwear'})}>
+              <View style={{alignItems:"center", flex:1, paddingHorizontal:5}}>
+                <Image source={require("../../assets/shopicon/babywear.png")} resizeMode="contain"/>
+                <Text style={{fontSize:11, textAlign:"center", paddingTop:8}}>Baby Wear</Text>
+              </View>
+            </TouchableOpacity>
           </View>
         </View>
+          
+        
+
         <View style={{paddingVertical:8, paddingHorizontal:32}}>
           <Text style={{fontSize:21}}>Daily Reads</Text>
           <DailyReadsText
