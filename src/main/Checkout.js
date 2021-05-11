@@ -7,7 +7,7 @@ require("firebase/firestore")
 export default function Checkout(props) {
     const shop = props.route.params.shop;
     const [address, setAddress] = useState("");
-    const [shipment, setShipment] = useState("BB Delivery");
+    const [shipment, setShipment] = useState("BB Send");
     const [payment, setPayment] = useState("COD");
     const onOrder = () => {
         const order = {
@@ -17,6 +17,7 @@ export default function Checkout(props) {
             address: address,
             shipment: shipment,
             payment: payment,
+            status: "Packaging",
             creationDate: firebase.firestore.FieldValue.serverTimestamp()
         };
         console.log(order);

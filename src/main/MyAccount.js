@@ -4,17 +4,6 @@ import {StyleSheet, View, Text, Image, ScrollView , TouchableOpacity} from 'reac
 import firebase from 'firebase';
 require('firebase/firestore');
 
-const MyOrderButton = (props) =>{
-  return(
-    <View style={{alignItems:"center", flex:1}}>
-      <TouchableOpacity>
-        <Image source={props.imgPath}/>
-      </TouchableOpacity>
-      <Text style={{fontSize:11, textAlign:"center", paddingTop:8}}>{props.name}</Text>
-    </View>
-  );
-}
-
 const WishlistCard = (props) =>{
   return(
     <TouchableOpacity>
@@ -47,7 +36,7 @@ const WaitingForReviewCard = (props) =>{
 
 
 
-function MyAccountScreen(){
+function MyAccountScreen(props){
 
     const [user, setUser] = useState(null);
     var loggedIn = true;
@@ -116,27 +105,35 @@ function MyAccountScreen(){
         <View style={{paddingVertical:16, paddingHorizontal:32, borderBottomWidth: 1, borderBottomColor:"#DADADA"}}>
           <View style={{flexDirection: "row"}}>
             <Text style={{fontSize:21, paddingBottom:8}}>My Orders</Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=> props.navigation.navigate('MyOrder', { cat: 'all'})}>
               <Text style={{fontSize:14, paddingLeft:80, paddingTop:5}}>Transaction History</Text>
             </TouchableOpacity>
           </View>
           <View style={{flexDirection:"row"}}>
-            <MyOrderButton
-              name="Payment" 
-              imgPath={require("../../assets/accounticon/payment.png")}
-            />
-            <MyOrderButton
-              name="Packaging"
-              imgPath={require("../../assets/accounticon/packaging.png")}
-            />
-            <MyOrderButton
-              name="Shipping"
-              imgPath={require("../../assets/accounticon/shipping.png")}
-            />
-            <MyOrderButton
-              name="Review"
-              imgPath={require("../../assets/accounticon/review.png")}
-            />
+            <TouchableOpacity onPress={()=> props.navigation.navigate('MyOrder',{cat:'Payment'})}>
+              <View style={{alignItems:"center", flex:1, paddingHorizontal:5}}>
+                <Image source={require("../../assets/accounticon/payment.png")} resizeMode="contain"/>
+                <Text style={{fontSize:11, textAlign:"center", paddingTop:8}}>Payment</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={()=> props.navigation.navigate('MyOrder',{cat:'Packaging'})}>
+              <View style={{alignItems:"center", flex:1, paddingHorizontal:5}}>
+                <Image source={require("../../assets/accounticon/packaging.png")} resizeMode="contain"/>
+                <Text style={{fontSize:11, textAlign:"center", paddingTop:8}}>Packaging</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={()=> props.navigation.navigate('MyOrder',{cat:'Shipping'})}>
+              <View style={{alignItems:"center", flex:1, paddingHorizontal:5}}>
+                <Image source={require("../../assets/accounticon/shipping.png")} resizeMode="contain"/>
+                <Text style={{fontSize:11, textAlign:"center", paddingTop:8}}>Shipping</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={()=> props.navigation.navigate('MyOrder',{cat:'Review'})}>
+              <View style={{alignItems:"center", flex:1, paddingHorizontal:5}}>
+                <Image source={require("../../assets/accounticon/review.png")} resizeMode="contain"/>
+                <Text style={{fontSize:11, textAlign:"center", paddingTop:8}}>Review</Text>
+              </View>
+            </TouchableOpacity>
           </View>
         </View>
         <View style={{paddingVertical:8, paddingHorizontal:32, borderBottomWidth: 1, borderBottomColor:"#DADADA"}}>

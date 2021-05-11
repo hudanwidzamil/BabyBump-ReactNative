@@ -29,6 +29,7 @@ import PostScreen from './src/main/Post';
 import DetailScreen from './src/main/Detail';
 import ShopCatScreen from './src/main/ShopCat';
 import CheckoutScreen from './src/main/Checkout';
+import MyOrderScreen from './src/main/MyOrder';
 
 const Stack = createStackNavigator();
 
@@ -84,6 +85,7 @@ export class App extends Component {
         <Stack.Screen name="Detail" component={DetailScreen} navigation={this.props.navigation}/>
         <Stack.Screen name="ShopCat" component={ShopCatScreen} navigation={this.props.navigation}/>
         <Stack.Screen name="Checkout" component={CheckoutScreen} navigation={this.props.navigation}/>
+        <Stack.Screen name="MyOrder" component={MyOrderScreen} navigation={this.props.navigation}/>
         </Stack.Navigator>
       </NavigationContainer>
     );

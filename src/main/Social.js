@@ -10,6 +10,7 @@ function SocialScreen({navigation}){
     useEffect(() => {
       firebase.firestore()
         .collection("posts")
+        .orderBy("creationDate", "desc")
         .get()
         .then((snapshot)=>{
           let posts = snapshot.docs.map(doc => {
