@@ -12,17 +12,19 @@ export default function Detail(props) {
     }
 
     return (
-        <ScrollView>
-            <Image style={{width:375, height:375}} source={{uri:item.image}}/>
-            <View>
-                <Text>{item.brand}</Text>
+        <ScrollView style={{backgroundColor:'white'}}>
+            <Image style={{width:375, height:375,}} source={{uri:item.image}}/>
+            <View style={{padding:16}}>
+                <Text style={{fontWeight:'bold'}}>{item.brand}</Text>
                 <Text>{item.name}</Text>
                 <Text>Rp{item.price}</Text>
                 <Text>{item.desc}</Text>
+                <Text>Count:</Text>
                 <NumericInput onChange={value => {setCount(value); setTotal(value*item.price)}} minValue={0} maxValue={item.stock}/>
-                <Text>Total:</Text>
-                <Text>Rp{total}</Text>
-                <Button title="Checkout" onPress={()=> onCheckout()}/>
+                <Text style={{fontWeight:'bold', marginTop:10}}>Total:</Text>
+                <Text style={{fontWeight:'bold'}}>Rp{total}</Text>
+                {count>0?<Button title="Checkout" onPress={()=> onCheckout()}/> : <Button  disabled={true} title="Checkout"/>}
+                
             </View>
         </ScrollView>
     );

@@ -33,21 +33,22 @@ export default function Checkout(props) {
     }
 
     return (
-        <View>
-            <Image style={{width:100, height:100}} source={{uri:shop.item.image}}/>
+        <View style={{backgroundColor:'white', flex:1, justifyContent:'center', alignItems:'center'}}>
+            <Image style={{width:150, height:150}} source={{uri:shop.item.image}}/>
             <Text>{shop.item.brand}</Text>
             <Text>{shop.item.name}</Text>
             <Text>Rp{shop.item.price}</Text>
             <Text>{shop.count}pc(s)</Text>
             <Text>Total: Rp{shop.total}</Text>
-            <TextInput 
-                placeholder="alamat"
-                onChangeText={setAddress}/>
             <Text>Shipping method: </Text>
             <Text>{shipment}</Text>
             <Text>Payment method: </Text>
             <Text>{payment}</Text>
-            <Button title="Order" onPress={()=> onOrder()}/>
+            <Text>Alamat: </Text>
+            <TextInput 
+                placeholder="Isi alamat anda ......"
+                onChangeText={setAddress}/>
+            {address == "" ?<Button  disabled={true} title="Order"/> :<Button title="Order" onPress={()=> onOrder()}/>}
         </View>
     );
 }
