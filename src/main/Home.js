@@ -4,14 +4,14 @@ import {StyleSheet, ScrollView , View, Text, Image, TouchableOpacity } from 'rea
 import firebase from 'firebase';
 require("firebase/firestore");
 
+import * as WebBrowser from 'expo-web-browser';
+
 const TrendingText = (props) =>{
   return(
-    <TouchableOpacity>
       <View style={{flexDirection:"row", borderBottomColor: '#888', borderBottomWidth: 1, paddingBottom:5, paddingTop:5}}>
         <Text style={{fontSize:20, flex:0.125}}>#{props.no}</Text>
         <Text numberOfLines={2} style={{fontSize:12, flex:1}}>{props.isi}</Text>
       </View>
-    </TouchableOpacity>
     
   );
 }
@@ -19,7 +19,9 @@ const TrendingText = (props) =>{
 const DailyReadsText = (props) =>{
   return(
     <TouchableOpacity>
-      <View style={{flexDirection:"row", borderBottomColor: '#888', borderBottomWidth: 1, paddingBottom:5, paddingTop:5}}>
+      <View style={{flexDirection:"row", borderBottomColor: '#888', borderBottomWidth: 1, paddingBottom:5, paddingTop:5}}
+          onPress={()=>{ WebBrowser.openBrowserAsync(props.href);}}
+        >
         <Image source={props.imgPath} style={{marginRight:5}}/>
         <View>
           <Text style={{fontSize:12, fontWeight:"bold"}}>{props.title}</Text>
@@ -43,6 +45,8 @@ function HomeScreen(props) {
           setUser(result.data())
         })
     }, [user]);
+
+
     return (
       <ScrollView style={{
         flex: 1,
@@ -93,11 +97,13 @@ function HomeScreen(props) {
               title="Dealing with morning sickness: Tips and tricks"
               content="If only morning sickness were just relegated to the mornings! Here's some help for women"
               imgPath={require("../../assets/dailyreadsimg/image1.png")}
+              href="https://www.parents.com/pregnancy/my-body/morning-sickness/15-tips-for-dealing-with-morning-sickness/"
           />
           <DailyReadsText
               title="Which foods to eat and avoid during pregnancy"
               content="Pregnant women need to ensure that their diet provides enough nutrients and energy for the..."
               imgPath={require("../../assets/dailyreadsimg/image2.png")}
+              href="https://www.healthline.com/nutrition/11-foods-to-avoid-during-pregnancy"
           />
         </View>
         <View style={{paddingVertical:8, paddingHorizontal:32}}>

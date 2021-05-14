@@ -40,12 +40,16 @@ function SocialScreen({navigation}){
   }
 
     return (
-      <View style={{flex:1}}>
-        <TextInput placeholder="Search for spesific posts ..." onChangeText={(search)=>fetchPosts(search)}/>
+      <View style={{flex:1, backgroundColor: '#ffffff',padding: 32,}}>
+        <TextInput 
+          placeholder="Search for spesific posts ..." 
+          onChangeText={(search)=>fetchPosts(search)}
+          style={{backgroundColor:'lightgrey', padding: 8, borderRadius:10}}
+        />
         <FlatList
           data = {posts}
           renderItem = {({item})=>
-            (<View>
+            (<View style={{backgroundColor:'#F8F8F8', padding: 8, borderRadius:10, marginVertical:5}} >
               <Text>{item.uid}</Text>
               <Text>{item.caption}</Text>
             </View>)

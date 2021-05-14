@@ -26,16 +26,18 @@ function ShopCatScreen(props){
     }, []);
 
     return (
-      <View style={{flex:1}}>
+      <View style={{flex:1, backgroundColor: '#ffffff',padding: 32,}}>
         <FlatList
           data = {products}
           renderItem = {({item})=>
             (
-              <TouchableOpacity onPress={()=> props.navigation.navigate('Detail', {item})}>
+              <TouchableOpacity onPress={()=> navigation.navigate('Detail', {item})}>
                 <View style={{flex: 1,
                               flexDirection: 'row',
                               flexWrap: 'wrap',
-                              alignItems: 'flex-start'}}>
+                              alignItems: 'flex-start',
+                              backgroundColor:'#F8F8F8', padding: 8, borderRadius:10, marginVertical:5}}>
+                                
                   <Image style={{width:75, height:75, maxWidth:'25%'}} source={{uri:item.image}}/>
                   <View>
                     <Text>{item.brand}</Text>

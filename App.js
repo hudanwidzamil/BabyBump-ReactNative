@@ -80,7 +80,7 @@ export class App extends Component {
       <NavigationContainer>
         <StatusBar style="auto"/>
         <Stack.Navigator initialRouteName="Main">
-        <Stack.Screen name="Main" component={MainScreen} />
+        <Stack.Screen name="Main" component={MainScreen} options={{ headerShown: false}}/>
         <Stack.Screen name="Post" component={PostScreen} navigation={this.props.navigation}/>
         <Stack.Screen name="Detail" component={DetailScreen} navigation={this.props.navigation}/>
         <Stack.Screen name="ShopCat" component={ShopCatScreen} navigation={this.props.navigation}/>

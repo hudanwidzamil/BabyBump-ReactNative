@@ -39,8 +39,9 @@ function ShopScreen({navigation}){
   }
 
     return (
-      <View style={{flex:1}}>
-        <TextInput placeholder="Search for spesific products ..." onChangeText={(search)=>fetchProducts(search)}/>
+      <View style={{flex:1, backgroundColor: '#ffffff',padding: 32,}}>
+        <TextInput placeholder="Search for spesific products ..." onChangeText={(search)=>fetchProducts(search)}
+        style={{backgroundColor:'lightgrey', padding: 8, borderRadius:10}}/>
         <FlatList
           data = {products}
           renderItem = {({item})=>
@@ -49,7 +50,9 @@ function ShopScreen({navigation}){
                 <View style={{flex: 1,
                               flexDirection: 'row',
                               flexWrap: 'wrap',
-                              alignItems: 'flex-start'}}>
+                              alignItems: 'flex-start',
+                              backgroundColor:'#F8F8F8', padding: 8, borderRadius:10, marginVertical:5}}>
+                                
                   <Image style={{width:75, height:75, maxWidth:'25%'}} source={{uri:item.image}}/>
                   <View>
                     <Text>{item.brand}</Text>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {StyleSheet, View, Text, Image, ScrollView , TouchableOpacity} from 'react-native';
+import {StyleSheet, View, Text, Image, ScrollView , TouchableOpacity, Button } from 'react-native';
 
 import firebase from 'firebase';
 require('firebase/firestore');
@@ -172,6 +172,7 @@ function MyAccountScreen(props){
             />
           </View>
         </View>
+        <Button title="LOGOUT" onPress={()=>onLogout()}/>
       </ScrollView>
     );
   }
