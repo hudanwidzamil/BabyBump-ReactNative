@@ -36,24 +36,24 @@ class Register extends Component {
         return (
             <View style={{flex:1, backgroundColor:"#f8f4fd"}}>
                 <View style={{flex:1, justifyContent:"center", marginHorizontal:50}}>
-                <TextInput
-                    placeholder="name"
-                    onChangeText={(name)=>this.setState({name})}/>
-                <TextInput
-                    placeholder="username"
-                    onChangeText={(uname)=>this.setState({uname})}/>    
-                <TextInput
-                    placeholder="email"
-                    onChangeText={(email)=>this.setState({email})}/>
-                <TextInput
-                    placeholder="password"
-                    secureTextEntry={true}
-                    onChangeText={(password)=>this.setState({password})}/>
-                <Button
-                    onPress={()=>this.onSignUp()}
-                    title="Sign Up"
-                    color="#55367BF0"
-                />        
+                    <TextInput
+                        placeholder="name"
+                        onChangeText={(name)=>this.setState({name})}/>
+                    <TextInput
+                        placeholder="username"
+                        onChangeText={(uname)=>this.setState({uname})}/>    
+                    <TextInput
+                        placeholder="email"
+                        onChangeText={(email)=>this.setState({email})}/>
+                    <TextInput
+                        placeholder="password"
+                        secureTextEntry={true}
+                        onChangeText={(password)=>this.setState({password})}/>
+                    <Button
+                        onPress={()=>this.onSignUp()}
+                        title="Sign Up"
+                        color="#55367BF0"
+                    />        
                 </View>
             </View>
         );
