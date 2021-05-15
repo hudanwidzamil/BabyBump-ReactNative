@@ -34,7 +34,8 @@ class Register extends Component {
     }
     render(){
         return (
-            <View>
+            <View style={{flex:1, backgroundColor:"#f8f4fd"}}>
+                <View style={{flex:1, justifyContent:"center", marginHorizontal:50}}>
                 <TextInput
                     placeholder="name"
                     onChangeText={(name)=>this.setState({name})}/>
@@ -51,7 +52,9 @@ class Register extends Component {
                 <Button
                     onPress={()=>this.onSignUp()}
                     title="Sign Up"
+                    color="#55367BF0"
                 />        
+                </View>
             </View>
         );
     }

@@ -24,18 +24,21 @@ class Login extends Component {
     }
     render(){
         return (
-            <View>
-                <TextInput
-                    placeholder="email"
-                    onChangeText={(email)=>this.setState({email})}/>
-                <TextInput
-                    placeholder="password"
-                    secureTextEntry={true}
-                    onChangeText={(password)=>this.setState({password})}/>
-                <Button
-                    onPress={()=>this.onSignIn()}
-                    title="Sign in"
-                />        
+            <View style={{flex:1, backgroundColor:"#f8f4fd"}}>
+                <View style={{flex:1, justifyContent:"center", marginHorizontal:50}}>
+                    <TextInput
+                        placeholder="email"
+                        onChangeText={(email)=>this.setState({email})}/>
+                    <TextInput
+                        placeholder="password"
+                        secureTextEntry={true}
+                        onChangeText={(password)=>this.setState({password})}/>
+                    <Button
+                        onPress={()=>this.onSignIn()}
+                        color="#55367BF0"
+                        title="Sign in"
+                    />        
+                </View>
             </View>
         );
     }
