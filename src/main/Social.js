@@ -71,7 +71,7 @@ function SocialScreen({navigation}){
           }}
           onPress={()=> navigation.navigate('Post')}
         >
-          <Text>+</Text>
+          <Text style={{ color:'white', fontSize:32 }}>+</Text>
         </TouchableOpacity>
       </View>
     );
