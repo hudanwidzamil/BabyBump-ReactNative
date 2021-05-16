@@ -21,6 +21,11 @@ export default function Checkout(props) {
             creationDate: firebase.firestore.FieldValue.serverTimestamp()
         };
         console.log(order);
+        const newStock = shop.item.stock - shop.count;
+        firebase.firestore()
+        .collection('products')
+        .doc(shop.item.id)
+        .update({stock: newStock });
         firebase.firestore()
         .collection('orders')
         .doc(firebase.auth().currentUser.uid)
