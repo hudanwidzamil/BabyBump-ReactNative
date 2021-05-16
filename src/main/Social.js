@@ -7,6 +7,8 @@ require("firebase/firestore");
 
 function SocialScreen({navigation}){
     const [posts, setPosts] = useState([]);
+    const [users, setUsers] = useState([]);
+
     useEffect(() => {
       firebase.firestore()
         .collection("posts")
@@ -19,9 +21,35 @@ function SocialScreen({navigation}){
             return { id, ...data}
           })
           setPosts(posts);
+          //console.log(posts);
+        })
+
+        firebase.firestore()
+        .collection("users")
+        .get()
+        .then((snapshot)=>{
+          let users = snapshot.docs.map(doc => {
+            const data = doc.data();
+            const id = doc.id;
+            return { id, ...data}
+          })
+          setUsers(users);
+          //console.log(users);
         })
         
     }, []);
+
+    function fetchUser(uid) {
+      firebase.firestore()
+        .collection("users")
+        .doc(uid)
+        .get()
+        .then((result)=>{
+          let user = result.data();
+          //console.log(user.uname);
+          return user.uname;
+        })
+    }
 
     const fetchPosts = (search) => {
       firebase.firestore()
@@ -50,8 +78,9 @@ function SocialScreen({navigation}){
           data = {posts}
           renderItem = {({item})=>
             (<View style={{backgroundColor:'#F8F8F8', padding: 8, borderRadius:10, marginVertical:5}} >
-              <Text>{item.uid}</Text>
+              <Text style={{ fontSize:14, opacity:0.6}}>{item.uname}</Text>
               <Text>{item.caption}</Text>
+              <Text style={{ fontSize:10, opacity:0.4}}>{item.uid}</Text>
             </View>)
           }
         />
