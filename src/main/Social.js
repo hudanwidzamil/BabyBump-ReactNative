@@ -80,7 +80,7 @@ function SocialScreen({navigation}){
             (<View style={{backgroundColor:'#F8F8F8', padding: 8, borderRadius:10, marginVertical:5}} >
               <Text style={{ fontSize:14, opacity:0.6}}>{item.uname}</Text>
               <Text>{item.caption}</Text>
-              <Text style={{ fontSize:10, opacity:0.4}}>{item.uid}</Text>
+              <Text style={{ fontSize:10, opacity:0.4, textAlign:'right'}}>{item.creationDate.toDate().toDateString()}</Text>
             </View>)
           }
         />
