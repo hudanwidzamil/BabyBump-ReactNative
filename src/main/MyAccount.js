@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {StyleSheet, View, Text, Image, ScrollView , TouchableOpacity, Button } from 'react-native';
+import {StyleSheet, View, Text, Image, ScrollView , TouchableOpacity, Button, FlatList } from 'react-native';
 
 import ProgressBar from 'react-native-progress/Bar';
 
@@ -10,7 +10,8 @@ const WishlistCard = (props) =>{
   return(
     <TouchableOpacity>
       <View style={{marginRight:10, alignItems:'center', height:120, width:90, flexDirection:"column", borderColor: '#B8B8B8', borderRadius:5, borderWidth: 1, padding:5}}>
-        
+      <Image style={{width:75, height:75, maxWidth:'25%'}} source={props.imgPath}/>
+      <Text style={{fontSize:12, flex:1, fontWeight:'bold'}}>{props.name}</Text>
         <Text style={{fontSize:12, flex:1, fontWeight:'bold'}}>Rp{props.price}</Text>
       </View>  
     </TouchableOpacity>
@@ -41,6 +42,7 @@ function MyAccountScreen(props){
 
     const [user, setUser] = useState(null);
     const [orders, setOrders] = useState(null);
+    const [wishlists, setWishlists] = useState(null);
     var loggedIn = true;
     useEffect(() => {
       if (loggedIn) {
@@ -71,6 +73,23 @@ function MyAccountScreen(props){
           
         })
 
+        firebase.firestore()
+        .collection("wishlists")
+        .doc(firebase.auth().currentUser.uid)
+        .collection("userWishlists")
+        .get()
+        .then((snapshot)=>{
+          let wishlists = snapshot.docs.map(doc => {
+            const data = doc.data();
+            const id = doc.id;
+            return { id, ...data}
+          })
+          if (wishlists.length>0) {
+            setWishlists(wishlists);  
+
+          }
+          
+        })
       }
       
     }, []);
@@ -164,29 +183,22 @@ function MyAccountScreen(props){
         </View>
         
         <View style={{paddingVertical:8, paddingHorizontal:32, borderBottomWidth: 1, borderBottomColor:"#DADADA"}}>
-          <Text style={{fontSize:21}}>My Wishlist</Text>
-          <ScrollView horizontal={true} style={{paddingVertical:8, paddingHorizontal:1}}>
-            <WishlistCard 
-              imgPath={require("../../assets/mywishlistimg/flowystroller.png")}
-              name='Flowy stroller'
-              price='400.000'
+          <Text style={{fontSize:21, marginBottom:5}}>My Wishlist</Text>
+          
+              <FlatList
+              horizontal={true}
+              data = {wishlists}
+              renderItem = {({item})=>
+                (<TouchableOpacity onPress={()=> props.navigation.navigate('Detail', {item})}>
+                  <View style={{marginRight:10, alignItems:'center', height:120, width:90, flexDirection:"column", borderColor: '#B8B8B8', borderRadius:5, borderWidth: 1, padding:5}}>
+                  <Image style={{width:75, height:75,}} source={{uri:item.image}}/>
+                  <Text style={{fontSize:12, flex:1, fontWeight:'bold'}}>{item.name}</Text>
+                    <Text style={{fontSize:12, flex:1, }}>Rp{item.price}</Text>
+                  </View>  
+                </TouchableOpacity>)
+              }
             />
-            <WishlistCard 
-              imgPath={require("../../assets/mywishlistimg/blessing.png")}
-              name='Blessing'
-              price='190.000'
-            />
-            <WishlistCard 
-              imgPath={require("../../assets/mywishlistimg/hnm.png")}
-              name='H&M'
-              price='400.000'
-            />
-            <WishlistCard 
-              imgPath={require("../../assets/mywishlistimg/flowystroller.png")}
-              name='Baby jogger'
-              price='400.000'
-            />
-          </ScrollView>
+        
         </View>
         {(orders!==null)?(
         <View style={{paddingVertical:8, paddingHorizontal:32}}>
