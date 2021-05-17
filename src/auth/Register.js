@@ -63,7 +63,7 @@ class Register extends Component {
                         placeholder="Password"
                         secureTextEntry={true}
                         onChangeText={(password)=>this.setState({password})}/>
-                    <Text>Is Pregnant?</Text>
+                    <Text>Are you pregnant?</Text>
                     <Switch
                         trackColor={{ false: "#767577", true: "#81b0ff" }}
                         thumbColor={this.isPregnant ? "#f5dd4b" : "#f4f3f4"}
@@ -71,10 +71,13 @@ class Register extends Component {
                         onValueChange={(isPregnant)=>this.setState({isPregnant})}
                         value={this.state.isPregnant}
                     />
+                    {this.state.isPregnant?
                     <TextInput
-                        placeholder="Days since your pregancy starts"
-                        keyboardType='number-pad'
-                        onChangeText={(pregDay)=>this.setState({pregDay})}/>
+                    placeholder="Days since your pregancy starts"
+                    keyboardType='number-pad'
+                    onChangeText={(pregDay)=>this.setState({pregDay})}/>
+                    :
+                    <Text></Text>}
                     <Button
                         onPress={()=>this.onSignUp()}
                         title="Sign Up"
