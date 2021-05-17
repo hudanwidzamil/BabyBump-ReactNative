@@ -43,8 +43,9 @@ function HomeScreen(props) {
         .get()
         .then((result)=>{
           setUser(result.data())
+          console.log(result.data().registerDate.toDate())
         })
-    }, [user]);
+    }, []);
 
 
     return (
@@ -55,8 +56,13 @@ function HomeScreen(props) {
         <View style={styles.topBar}>
           <Text style={{fontSize:20,fontWeight:'bold',color:"#fff"}}>Good Morning,</Text>
           <Text style={{fontSize:26,fontWeight:'bold',color:"#fff"}}>{user.name}</Text>
-          <Text style={{fontSize:20,color:"#fff"}}>Day 64</Text>
-          <Text style={{fontSize:16,color:"#fff"}}>216 days to your delivery</Text>
+          {user.isPregnant ? 
+          ( <View>
+              <Text style={{fontSize:20,color:"#fff"}}>Day {Number(user.pregDay)+ Math.ceil(( new Date() - user.registerDate.toDate()) / (1000 * 60 * 60 * 24))}</Text>
+              <Text style={{fontSize:16,color:"#fff"}}>{280-(Number(user.pregDay)+ Math.ceil(( new Date() - user.registerDate.toDate()) / (1000 * 60 * 60 * 24)))} days to your delivery</Text>
+            </View>
+          ) : <Text></Text>}
+          
         </View>
         
         <View style={{paddingVertical:16, paddingHorizontal:32}}>

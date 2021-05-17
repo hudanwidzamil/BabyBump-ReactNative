@@ -27,9 +27,13 @@ class Login extends Component {
             <View style={{flex:1, backgroundColor:"#f8f4fd"}}>
                 <View style={{flex:1, justifyContent:"center", marginHorizontal:50}}>
                     <TextInput
+                        autoCapitalize="none"
+                        autoCorrect={false}
                         placeholder="email"
                         onChangeText={(email)=>this.setState({email})}/>
                     <TextInput
+                        autoCapitalize="none"
+                        autoCorrect={false}
                         placeholder="password"
                         secureTextEntry={true}
                         onChangeText={(password)=>this.setState({password})}/>

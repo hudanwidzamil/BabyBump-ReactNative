@@ -83,9 +83,9 @@ export class App extends Component {
         <Stack.Screen name="Main" component={MainScreen} options={{ headerShown: false}}/>
         <Stack.Screen name="Post" component={PostScreen} navigation={this.props.navigation}/>
         <Stack.Screen name="Detail" component={DetailScreen} navigation={this.props.navigation}/>
-        <Stack.Screen name="ShopCat" component={ShopCatScreen} navigation={this.props.navigation}/>
+        <Stack.Screen name="ShopCat"  options={{ title: 'Category' }} component={ShopCatScreen} navigation={this.props.navigation}/>
         <Stack.Screen name="Checkout" component={CheckoutScreen} navigation={this.props.navigation}/>
-        <Stack.Screen name="MyOrder" component={MyOrderScreen} navigation={this.props.navigation}/>
+        <Stack.Screen name="MyOrder" options={{ title: 'My Order' }} component={MyOrderScreen} navigation={this.props.navigation}/>
         </Stack.Navigator>
       </NavigationContainer>
     );

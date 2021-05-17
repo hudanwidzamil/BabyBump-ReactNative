@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import {StyleSheet, View, Text, Image, ScrollView , TouchableOpacity, Button } from 'react-native';
 
+import ProgressBar from 'react-native-progress/Bar';
+
 import firebase from 'firebase';
 require('firebase/firestore');
 
@@ -97,8 +99,12 @@ function MyAccountScreen(props){
                   <Text style={{fontSize:12}}>following</Text>
                 </View>
               </View>
-              <Text style={{fontSize:14,fontWeight:'bold', alignSelf:'center', top:5}}>9 weeks pregnant</Text>
-              <Image source={require("../../assets/accounttopbar/pregnancylevel.png")} style={{top:4}}/>
+              {user.isPregnant?
+                (<View>
+                  <Text style={{fontSize:14,fontWeight:'bold', alignSelf:'center', top:5, marginBottom:8}}>{Math.ceil((Number(user.pregDay)+ Math.ceil(( new Date() - user.registerDate.toDate()) / (1000 * 60 * 60 * 24)))/7)} weeks pregnant</Text>
+                  <ProgressBar color='purple' progress={((Number(user.pregDay)+ Math.ceil(( new Date() - user.registerDate.toDate()) / (1000 * 60 * 60 * 24)))/7)/40} width={120} />    
+                </View>)
+              :<View></View>}
             </View>
           </View>
         </View>
