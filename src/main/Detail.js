@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import { View, ScrollView, Image, Text, Button } from 'react-native';
+import { View, ScrollView, Image, Text, Button, Alert } from 'react-native';
 import NumericInput from 'react-native-numeric-input';
+
+import firebase from 'firebase'
+require("firebase/firestore")
 
 export default function Detail(props) {
     const item = props.route.params.item;
@@ -9,6 +12,17 @@ export default function Detail(props) {
 
     const onCheckout = () => {
         props.navigation.navigate('Checkout', { shop : { item: item, count: count, total: total }});
+    }
+    const onWishlist = () => {
+        
+        firebase.firestore()
+        .collection('wishlists')
+        .doc(firebase.auth().currentUser.uid)
+        .collection("userWishlists")
+        .add(item)
+        .then((function(){
+            Alert.alert("Successfully added to wishlist")
+        }));
     }
 
     return (
@@ -23,6 +37,7 @@ export default function Detail(props) {
                 <NumericInput onChange={value => {setCount(value); setTotal(value*item.price)}} minValue={0} maxValue={item.stock}/>
                 <Text style={{fontWeight:'bold', marginTop:10}}>Total:</Text>
                 <Text style={{fontWeight:'bold'}}>Rp{total}</Text>
+                <Button title="Add to wishlist" onPress={()=> onWishlist()}/>
                 {count>0?<Button title="Checkout" onPress={()=> onCheckout()}/> : <Button  disabled={true} title="Checkout"/>}
                 
             </View>
