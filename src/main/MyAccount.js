@@ -51,9 +51,10 @@ function MyAccountScreen(props){
         .then((result)=>{
           setUser(result.data())
         })  
+
       }
       
-    }, [user]);
+    }, []);
 
     if (user === null) {
       return <View/>
