@@ -10,8 +10,7 @@ const WishlistCard = (props) =>{
   return(
     <TouchableOpacity>
       <View style={{marginRight:10, alignItems:'center', height:120, width:90, flexDirection:"column", borderColor: '#B8B8B8', borderRadius:5, borderWidth: 1, padding:5}}>
-        <Image source={props.imgPath}/>
-        <Text style={{fontSize:12, flex:1, padding:5}}>{props.name}</Text>
+        
         <Text style={{fontSize:12, flex:1, fontWeight:'bold'}}>Rp{props.price}</Text>
       </View>  
     </TouchableOpacity>
@@ -41,6 +40,7 @@ const WaitingForReviewCard = (props) =>{
 function MyAccountScreen(props){
 
     const [user, setUser] = useState(null);
+    const [orders, setOrders] = useState(null);
     var loggedIn = true;
     useEffect(() => {
       if (loggedIn) {
@@ -50,7 +50,26 @@ function MyAccountScreen(props){
         .get()
         .then((result)=>{
           setUser(result.data())
-        })  
+        }) 
+        
+        firebase.firestore()
+        .collection("orders")
+        .doc(firebase.auth().currentUser.uid)
+        .collection("userOrders")
+        .orderBy("order.creationDate", 'desc')
+        .limit(1)
+        .get()
+        .then((snapshot)=>{
+          let orders = snapshot.docs.map(doc => {
+            const data = doc.data();
+            const id = doc.id;
+            return { id, ...data}
+          })
+          if (orders.length>0) {
+            setOrders(orders[0]);  
+          }
+          
+        })
 
       }
       
@@ -143,6 +162,7 @@ function MyAccountScreen(props){
             </TouchableOpacity>
           </View>
         </View>
+        
         <View style={{paddingVertical:8, paddingHorizontal:32, borderBottomWidth: 1, borderBottomColor:"#DADADA"}}>
           <Text style={{fontSize:21}}>My Wishlist</Text>
           <ScrollView horizontal={true} style={{paddingVertical:8, paddingHorizontal:1}}>
@@ -168,17 +188,27 @@ function MyAccountScreen(props){
             />
           </ScrollView>
         </View>
+        {(orders!==null)?(
         <View style={{paddingVertical:8, paddingHorizontal:32}}>
-          <Text style={{fontSize:15}}>Waiting for review</Text>
+          <Text style={{fontSize:15}}>Your Latest Order</Text>
           <View style={{flexDirection:"column", overflow:'scroll'}}>
-            <WaitingForReviewCard
-              imgPath={require("../../assets/waitingforreviewimg/blackmores.jpg")}
-              product="Blackmores"
-              description="Pregnancy & Breast-Feeding Gold"
-              qty="1"
-            />
+            <View style={{flex: 1,
+                              flexDirection: 'row',
+                              flexWrap: 'wrap',
+                              alignItems: 'flex-start',
+                              backgroundColor:'#F8F8F8', padding: 8, borderRadius:10, marginVertical:5}}>
+                                
+                  <Image style={{width:75, height:75, maxWidth:'25%'}} source={{uri:orders.order.item.image}}/>
+                  <View>
+                    <Text style={{fontWeight:"bold"}}>{orders.order.item.brand}</Text>
+                    <Text>{orders.order.item.name}</Text>
+                    <Text>Rp{orders.order.total}</Text>
+                    <Text>{orders.order.count}pc(s)</Text>
+                    <Text>Order status: {orders.order.status}</Text> 
+                  </View>
+              </View>
           </View>
-        </View>
+        </View>):<View></View>}
         <Button title="LOGOUT" onPress={()=>onLogout()}/>
       </ScrollView>
     );

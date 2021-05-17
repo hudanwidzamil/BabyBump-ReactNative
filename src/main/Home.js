@@ -43,7 +43,7 @@ function HomeScreen(props) {
         .get()
         .then((result)=>{
           setUser(result.data())
-          console.log(result.data().registerDate.toDate())
+          //console.log(result.data().registerDate.toDate())
         })
     }, []);
 
