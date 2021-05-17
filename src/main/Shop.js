@@ -39,9 +39,37 @@ function ShopScreen({navigation}){
   }
 
     return (
+      
       <View style={{flex:1, backgroundColor: '#ffffff',padding: 32,}}>
+        <View style={{marginBottom:72}}>
+          <Text style={{fontSize:16, paddingBottom:8}}>Category</Text>
+          <View style={{flexDirection:"row"}}>
+            <TouchableOpacity onPress={()=> navigation.navigate('ShopCat',{cat:'mwear'})}>
+              <View style={{alignItems:"center", flex:1, paddingHorizontal:5 }}>
+                <Image source={require("../../assets/shopicon/maternitywear.png")} resizeMode="contain"/>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={()=> navigation.navigate('ShopCat',{cat:'supplement'})}>
+              <View style={{alignItems:"center", flex:1, paddingHorizontal:5}}>
+                <Image source={require("../../assets/shopicon/supplement.png")} resizeMode="contain"/>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={()=> navigation.navigate('ShopCat',{cat:'stroller'})}>
+              <View style={{alignItems:"center", flex:1, paddingHorizontal:5}}>
+                <Image source={require("../../assets/shopicon/stroller.png")} resizeMode="contain"/>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={()=> navigation.navigate('ShopCat',{cat:'bwear'})}>
+              <View style={{alignItems:"center", flex:1, paddingHorizontal:5}}>
+                <Image source={require("../../assets/shopicon/babywear.png")} resizeMode="contain"/>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>
+        
         <TextInput placeholder="Search for spesific products ..." onChangeText={(search)=>fetchProducts(search)}
         style={{backgroundColor:'lightgrey', padding: 8, borderRadius:10}}/>
+        <Text style={{fontSize:16, paddingBottom:8, paddingTop:8}}>All items</Text>
         <FlatList
           data = {products}
           renderItem = {({item})=>
