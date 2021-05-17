@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import {StyleSheet, ScrollView , View, Text, Image, TouchableOpacity } from 'react-native';
+import {StyleSheet, ScrollView , View, Text, Image, TouchableOpacity, Button } from 'react-native';
 
 import firebase from 'firebase';
 require("firebase/firestore");
 
-import * as WebBrowser from 'expo-web-browser';
+import * as Linking from 'expo-linking';
 
 const TrendingText = (props) =>{
   return(
@@ -18,9 +18,8 @@ const TrendingText = (props) =>{
 
 const DailyReadsText = (props) =>{
   return(
-    <TouchableOpacity>
+    <TouchableOpacity onPress={()=>{ Linking.openURL(props.href)}}>
       <View style={{flexDirection:"row", borderBottomColor: '#888', borderBottomWidth: 1, paddingBottom:5, paddingTop:5}}
-          onPress={()=>{ WebBrowser.openBrowserAsync(props.href);}}
         >
         <Image source={props.imgPath} style={{marginRight:5}}/>
         <View>
@@ -103,13 +102,13 @@ function HomeScreen(props) {
               title="Dealing with morning sickness: Tips and tricks"
               content="If only morning sickness were just relegated to the mornings! Here's some help for women"
               imgPath={require("../../assets/dailyreadsimg/image1.png")}
-              href="https://www.parents.com/pregnancy/my-body/morning-sickness/15-tips-for-dealing-with-morning-sickness/"
+              href='https://www.parents.com/pregnancy/my-body/morning-sickness/15-tips-for-dealing-with-morning-sickness/'
           />
           <DailyReadsText
               title="Which foods to eat and avoid during pregnancy"
               content="Pregnant women need to ensure that their diet provides enough nutrients and energy for the..."
               imgPath={require("../../assets/dailyreadsimg/image2.png")}
-              href="https://www.healthline.com/nutrition/11-foods-to-avoid-during-pregnancy"
+              href='https://www.healthline.com/nutrition/11-foods-to-avoid-during-pregnancy'
           />
         </View>
         <View style={{paddingVertical:8, paddingHorizontal:32}}>
