@@ -1,82 +1,96 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import MyAccountScreen from './src/MyAccount';
-import ShopScreen from './src/Shop';
-import SocialScreen from './src/Social';
-import HomeScreen from './src/Home';
+import React, { Component } from 'react';
+import { View, Text } from 'react-native';
 
-const Tab = createBottomTabNavigator();
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-const IconBottom = (props) => {
-  const { color, focused } = props.data
-  let colorSelected = focused ? color : 'grey'
-  return (
-      <View>
-          <Image source={props.image} style={{ width: 24, height: 26, tintColor: colorSelected }} />
-      </View>
-  )
+
+import firebase from 'firebase';
+const firebaseConfig = {
+  apiKey: "AIzaSyBGe2XAOYcvGL6TArKI0gS2b2Q5ShvYj-k",
+  authDomain: "babybump-e453e.firebaseapp.com",
+  projectId: "babybump-e453e",
+  storageBucket: "babybump-e453e.appspot.com",
+  messagingSenderId: "763716559924",
+  appId: "1:763716559924:web:1cb6461a81b15c2ca85661",
+  measurementId: "G-72GSNGVEF1"
+};
+
+if (firebase.apps.length === 0) {
+  firebase.initializeApp(firebaseConfig)
+};
+
+import LandingScreen from './src/auth/Landing';
+import RegisterScreen from './src/auth/Register';
+import LoginScreen from './src/auth/Login';
+import MainScreen from  './src/Main';
+import PostScreen from './src/main/Post';
+import DetailScreen from './src/main/Detail';
+import ShopCatScreen from './src/main/ShopCat';
+import CheckoutScreen from './src/main/Checkout';
+import MyOrderScreen from './src/main/MyOrder';
+
+const Stack = createStackNavigator();
+
+export class App extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+        loaded: false,
+    }
+  }
+  componentDidMount(){
+    firebase.auth().onAuthStateChanged((user) => {
+      if (!user){
+        this.setState({
+          loggedIn: false,
+          loaded: true,
+        })
+      }else {
+        this.setState({
+          loggedIn: true,
+          loaded: true,
+        })
+      }
+    })
+  }
+  render(){
+    const { loggedIn, loaded } = this.state;
+    if (!loaded) {
+      return(
+        <View style={{flex:1, justifyContent:'center', alignContent:'center'}}>
+          <Text>Loading</Text>
+        </View>
+      )
+    } 
+    if (!loggedIn) {
+      return (
+        <NavigationContainer>
+          <Stack.Navigator  initialRouteName="Landing">
+            <Stack.Screen name="Landing" component={LandingScreen} options={{ headerShown: false}}/>
+            <Stack.Screen name="Register" component={RegisterScreen} />
+            <Stack.Screen name="Login" component={LoginScreen} />
+          </Stack.Navigator>
+          <StatusBar style="auto"/>
+        </NavigationContainer>  
+      )  
+    }
+    return (
+      <NavigationContainer>
+        <StatusBar style="auto"/>
+        <Stack.Navigator initialRouteName="Main">
+        <Stack.Screen name="Main" component={MainScreen} options={{ headerShown: false}}/>
+        <Stack.Screen name="Post" component={PostScreen} navigation={this.props.navigation}/>
+        <Stack.Screen name="Detail" component={DetailScreen} navigation={this.props.navigation}/>
+        <Stack.Screen name="ShopCat"  options={{ title: 'Category' }} component={ShopCatScreen} navigation={this.props.navigation}/>
+        <Stack.Screen name="Checkout" component={CheckoutScreen} navigation={this.props.navigation}/>
+        <Stack.Screen name="MyOrder" options={{ title: 'My Order' }} component={MyOrderScreen} navigation={this.props.navigation}/>
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  }
+  
 }
 
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Tab.Navigator tabBarOptions={{
-        activeTintColor:'black'
-      }}>
-        <Tab.Screen name = "Home" component = {HomeScreen}
-          options={{
-            tabBarLabel: "Home",
-            tabBarIcon: (props) => (
-              <IconBottom data={props} image={require('./assets/navbaricon/home.png')}/>
-            )
-          }}
-        />
-        <Tab.Screen name = "Social" component = {SocialScreen}
-          options={{
-            tabBarLabel: "Social",
-            tabBarIcon: (props) => (
-              <IconBottom data={props} image={require('./assets/navbaricon/social.png')}/>
-            )
-          }}
-        />
-        <Tab.Screen name = "Shop" component = {ShopScreen}
-          options={{
-            tabBarLabel: "Shop",
-            tabBarIcon: (props) => (
-              <IconBottom data={props} image={require('./assets/navbaricon/shop.png')}/>
-            )
-          }}
-        />
-        <Tab.Screen name = "MyAccount" component = {MyAccountScreen}
-          options={{
-            tabBarLabel: "My Account",
-            tabBarIcon: (props) => (
-              <IconBottom data={props} image={require('./assets/navbaricon/myaccount.png')}/>
-            )
-          }}
-        />
-      </Tab.Navigator>
-    </NavigationContainer>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  topBar:{
-    flex:0.25,
-    backgroundColor: '#CAA8F5',
-    alignItems: 'flex-start',
-    justifyContent: 'flex-end',
-    padding: 32,
-    borderBottomLeftRadius:25,
-    borderBottomRightRadius:25
-  },
-});
+export default App;
