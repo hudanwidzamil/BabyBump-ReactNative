@@ -32,10 +32,11 @@ export default function Post(props) {
     }
 
     return (
-        <View>
+        <View style={{flex:1, backgroundColor:'white'}}>
             <TextInput
                 placeholder="What's on your mind?"
                 onChangeText={(caption)=>setCaption(caption)}
+                style={{padding:16}}
             />
             <Button title="Post" onPress={()=> onPost()}/>
         </View>

@@ -53,7 +53,9 @@ export default function MyOrderScreen(props){
               <View style={{flex: 1,
                 flexDirection: 'row',
                 flexWrap: 'wrap',
-                alignItems: 'flex-start'}}>
+                alignItems: 'flex-start',
+                backgroundColor:'#f8f8f8',
+                padding:8}}>
                 <Image style={{width:100, height:100, maxWidth:'25%'}} source={{uri:item.order.item.image}}/>
                 <View>
                   <Text>Order ID: {item.id}</Text>
