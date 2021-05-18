@@ -31,7 +31,7 @@ function ShopCatScreen(props){
           data = {products}
           renderItem = {({item})=>
             (
-              <TouchableOpacity onPress={()=> navigation.navigate('Detail', {item})}>
+              <TouchableOpacity onPress={()=> props.navigation.navigate('Detail', {item})}>
                 <View style={{flex: 1,
                               flexDirection: 'row',
                               flexWrap: 'wrap',
